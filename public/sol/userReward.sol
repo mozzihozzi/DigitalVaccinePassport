@@ -38,7 +38,7 @@ contract userRewardContract {
 
     //번호에 해당하는 제품의 이름을 리턴합니다.
     function getUserRewardInfoStruct(uint _index) public view returns (uint, string, string, uint, uint) {
-        return (userRewardInfo[_index].number, userRewardInfo[_index].uID, userRewardInfo[_index].rewardType, userRewardInfo[_index].rewardCoin, userRewardInfo[_index].timestamp);
+        return (userRewardInfos[_index].number, userRewardInfos[_index].uID, userRewardInfos[_index].rewardType, userRewardInfos[_index].rewardCoin, userRewardInfos[_index].timestamp);
     }
 
     //컨트랙트를 삭제합니다.

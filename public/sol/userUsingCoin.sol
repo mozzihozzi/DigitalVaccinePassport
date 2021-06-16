@@ -38,7 +38,7 @@ contract userUsingCoinContract {
 
     //번호에 해당하는 제품의 이름을 리턴합니다.
     function getUserUsingCoinInfoStruct(uint _index) public view returns (uint, string, string, uint, uint) {
-        return (userUsingCoinInfo[_index].number, userUsingCoinInfo[_index].uID, userUsingCoinInfo[_index].useType, userUsingCoinInfo[_index].useCoin, userUsingCoinInfo[_index].timestamp);
+        return (userUsingCoinInfos[_index].number, userUsingCoinInfos[_index].uID, userUsingCoinInfos[_index].useType, userUsingCoinInfos[_index].useCoin, userUsingCoinInfos[_index].timestamp);
     }
 
     //컨트랙트를 삭제합니다.

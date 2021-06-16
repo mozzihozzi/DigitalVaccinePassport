@@ -40,7 +40,7 @@ contract vaccinationContract {
 
     //번호에 해당하는 제품의 이름을 리턴합니다.
     function getVaccineInfoStruct(uint _index) public view returns (uint, string, string, string, string, uint, uint) {
-        return (vaccineInfo[_index].number, vaccineInfo[_index].uName, vaccineInfo[_index].uPID, vaccineInfo[_index].uCountry, vaccineInfo[_index].vaccineType, vaccineInfo[_index].vaccinationLevel, vaccineInfo[_index].timestamp);
+        return (vaccineInfos[_index].number, vaccineInfos[_index].uName, vaccineInfos[_index].uPID, vaccineInfos[_index].uCountry, vaccineInfos[_index].vaccineType, vaccineInfos[_index].vaccinationLevel, vaccineInfos[_index].timestamp);
     }
 
     //컨트랙트를 삭제합니다.

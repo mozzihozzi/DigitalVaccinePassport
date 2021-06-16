@@ -40,7 +40,7 @@ contract immigrationCheckContract {
 
     //번호에 해당하는 출입국 기록을 리턴합니다.
     function getEntryExitInfoStruct(uint _index) public view returns (uint, string, string, string, string, bool, uint) {
-        return (entryexitInfo[_index].number, entryexitInfo[_index].uName, entryexitInfo[_index].uPID, entryexitInfo[_index].uCountry, entryexitInfo[_index]._immigrationContry, entryexitInfo[_index]._entryexitType, entryexitInfo[_index].timestamp);
+        return (entryexitInfos[_index].number, entryexitInfos[_index].uName, entryexitInfos[_index].uPID, entryexitInfos[_index].uCountry, entryexitInfos[_index]._immigrationContry, entryexitInfos[_index]._entryexitType, entryexitInfos[_index].timestamp);
     }
 
     //컨트랙트를 삭제합니다.
