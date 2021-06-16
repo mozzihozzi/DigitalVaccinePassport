@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="../public/js/web3.min.js"></script>
-	<script type="text/javascript" src="../public/js/ethereumjs-tx-1.3.3.min.js"></script>
-
     
     <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+
+    <script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.min.js"></script>
+    <script src="js/vaccinePassport.js"></script>
+
     <title>Institution page</title>
 </head>
 <body>
@@ -22,6 +23,8 @@
         <section id="institutionPage">
             <br>
             <h1>Input Your Information</h1>
+            <hr>
+            <br>
     
             <div class="row_group">
                 <div class="join_row">
@@ -38,17 +41,16 @@
             <div id="connectAccount">
                 <button type="button" id="btnJoin" onclick="connectAccount()">Enter</button>
             </div>
-
-            
-            <script>
-            function connectAccount() {
-				alert("your account has been connected!!!");
-            
-                window.location.href = 'id_check.html';
-            }
-            </script>
         </section>
     </main>
+
+    <script>
+        function connectAccount() {
+            alert("your account has been connected!!!");
+        
+            window.location.href = 'id_check.html';
+        }
+    </script>
     
 
     

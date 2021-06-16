@@ -4,9 +4,96 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+
+    <script src="https://unpkg.com/@metamask/legacy-web3@latest/dist/metamask.web3.min.js"></script>
+    <script src="js/vaccinePassport.js"></script>
+    
     <title>ID check</title>
 </head>
 <body>
+    <header>
+        <div class="navigation">
+            <span class="title">DVP</span>
+            <div class="menu-popup hide">
+                <ul class="menus">
+                    <li class="menu"><a href="id_check.html">ID check</a></li>
+                    <li class="menu"><a href="activity.html">Activity</a></li>
+                </ul>
+            </div>
+            <div class="menu-button">Menu</div>
+        </div>
+    </header>
+
+    <main>
+        <h2>ID Check</h2>
+        <h4>Input user's information you want to compare.</h4>
+        <hr>
+        <br>
+        <div class="row_group">
+            <div id="uName">
+                <h3 class="join_title"><label>Name</label></h3>
+                    <input type="text" id="uName" name="uName">
+            </div>
+            
+            <div id="jumin">
+                <h3 class="join_title"><label>Resident registration number</label></h3>
+                    <input  type="text" id="jumin1" size="8" name="jumin1"> - <input type="password" id="jumin2" size="8" name="jumin2">
+                
+            </div>
+            <div id="country">
+                <h3 class="join_title"><label>Country</label></h3>
+                    <input type="text" id="country" name="country">
+            </div>
+
+            <br>
+
+            <div>
+                
+                <button id="qrcodeBtn" onclick="Aqrcode()">QR code</button>
+                <br>
+                <button id="checkBtn" onclick="IdCheck()" >check</button>
+
+            </div>
+
+        </div>
+    </main>
+    <script>
+        function Aqrcode(){
+            //qr코드 인증하기 위한 카메라 open -> 정보 가져오기 
+        }
+
+        function IdCheck(){
+            // 입력한 값과 qr코드 정보를 비교 
+            // 일치하면 True 불일치하면 False
+        }
+    </script>
+
+    <script>
+        const menuButton = document.querySelector(".menu-button");
+
+        const controlMenuOnMobile = (event) => {
+        const menu = document.querySelector(".menu-popup");
+        if (menu.classList.contains("hide")) {
+            menu.classList.remove("hide");
+            menu.classList.add("show");
+        } else if (menu.classList.contains("show")) {
+            menu.classList.remove("show");
+            menu.classList.add("hide");
+        }
+        };
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+        menuButton.onclick = controlMenuOnMobile;
+        });
+    </script>
+
 
     
 </body>
