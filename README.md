@@ -2,9 +2,9 @@
 
 Original Source Code : https://github.com/sotolab/metamask_exam
 
-Toy Project : Digital Vaccine Passport 
-11
-* Back-end : mozzihozzi
-* Front-end : dev-wendy
-* Smart contract : DHYeo
-* Project Planning : ujina123
+Blockchain Toy Project : Digital Vaccine Passport 
+
+* Back-end : Hoyeon, Kim
+* Front-end : Nuri, Kim
+* Smart contract : Donghun, Yeo
+* Project Planning : Yujin, Lee
