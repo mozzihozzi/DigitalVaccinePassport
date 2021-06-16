@@ -7,3 +7,4 @@ Toy Project : Digital Vaccine Passport
 * Back-end : mozzihozzi
 * Front-end : dev-wendy
 * Smart contract : DHYeo
+* Project Planning : ujina123
