@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../public/js/web3.min.js"></script>
+	<script type="text/javascript" src="../public/js/ethereumjs-tx-1.3.3.min.js"></script>
+
+    <script type="text/javascript" src="../public/js/qrcode.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css">
+    <title>My page</title>
+
+    <script>
+		$(document).ready(function () { //화면이 시작하자마자 실행
+			let DEBUG = 1;
+
+			const web3 = new Web3('https://ropsten.infura.io/v3/3c52917848e945229c0d33d632b10490'); //ropsten - Testnet에 접속
+			let Buffer = ethereumjs.Buffer.Buffer;
+			let version = web3.version;
+
+			if (DEBUG) {
+				console.log('starting...');
+				console.log("Ropsten Ethereum API version : ", version);
+				console.log("web3: ", web3);
+			}
+
+			$('#coin').on('click', async function () {
+
+				let fromaddress = $("#fromaddress").val();
+				let toaddress = $("#toaddress").val();
+				let amount = $("#sendcoin").val();
+				let myPrivateKey = $("#passwd").val();
+
+				const privateKey = Buffer.from(myPrivateKey, 'hex');
+				if (DEBUG) console.log("privateKey: ", privateKey);
+
+				web3.eth.getTransactionCount(fromaddress, (err, txCount) => {
+				// Build the transaction
+				const txObject = {
+				nonce: web3.utils.toHex(txCount),
+				to: toaddress,
+				value: web3.utils.toHex(web3.utils.toWei(amount, 'ether')),
+				gasLimit: web3.utils.toHex(21000),
+				gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gwei'))
+				}
+
+				// Sign the transaction
+				const tx = new ethereumjs.Tx(txObject);
+				tx.sign(privateKey);
+
+				const serializedTx = tx.serialize()
+				const raw = '0x' + serializedTx.toString('hex')
+
+				// Broadcast the transaction
+				web3.eth.sendSignedTransaction(raw, (err, txHash) => {
+				console.log('txHash:', txHash)
+				// Now go check etherscan to see the transaction!
+				})
+				})  // end of txbuilder
+
+			})
+
+			$('#getBalance').on('click', async function () {
+				// id = getBalance 클릭하면 잔액 조회
+
+				let fromaddress = $("#fromaddress").val(); // fromaddress에 있는 val를 가지고 와라
+
+				let getbalance = await web3.eth.getBalance(fromaddress); // 잔액 조회
+				let balance = web3.utils.fromWei(getbalance, "ether")
+
+				if (DEBUG) console.log("balance : ", balance + " ETH");
+				$('#message').text(" balance: " + balance + " ETH"); // 메세지
+
+			}) 
+		})
+	</script>
+
+    </script>
+</head>
+<body>
+    <header>
+        <div class="navigation">
+            <span class="title">DVP</span>
+            <div class="menu-popup hide">
+                <ul class="menus">
+                    <li class="menu"><a href="Mypage.html">My page</a></li>
+                    <li class="menu"><a href="VaccineResult.html">Vaccine Result</a></li>
+                </ul>
+            </div>
+            <div class="menu-button">Menu</div>
+        </div>
+    </header>
+
+    <br>
+    <main>
+        
+        <br>
+	<br>
+	<div class="container " role="main">
+		<div id="tablePlace"></div>
+		<button id="getBalance">잔액 조회</button>
+		<button id="coin">전송</button>
+        <br>
+        <br>
+		<h5>송신처 <input id="fromaddress" size="45" placeholder="" value=""></input> </h5> 
+		<h5>수신처 <input id="toaddress" size="45" placeholder=""></input> </h5>
+		<h5>코인 <input id="sendcoin" size="45" placeholder=""></input> </h5>
+		<h5>비밀번호 <input type="password" id="passwd" size="45" placeholder="" value=""></input> </h5>  
+	</div>
+	<br>
+    <div id="message"></div>
+	<br>
+	<div class="container " role="main">
+		<h4><strong> log </strong></h4>
+		<div id="qrcode" style="width:250px; height:250px; margin-top:15px;"></div>
+	</div>
+
+       
+    </main>
+
+ 
+    <script type="text/javascript"></script>
+    <script>
+        const menuButton = document.querySelector(".menu-button");
+
+        const controlMenuOnMobile = (event) => {
+        const menu = document.querySelector(".menu-popup");
+        if (menu.classList.contains("hide")) {
+            menu.classList.remove("hide");
+            menu.classList.add("show");
+        } else if (menu.classList.contains("show")) {
+            menu.classList.remove("show");
+            menu.classList.add("hide");
+        }
+        };
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+        menuButton.onclick = controlMenuOnMobile;
+        });
+    </script>
+
+</body>
+</html>
